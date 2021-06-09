@@ -55,5 +55,7 @@ public interface InterfaceCrud<T> extends Serializable {
 	
 	Query obterQuery(String query) throws Exception;
 	
+	List<T[]> getListSQLDinamicaArray(String sql) throws Exception;
+	
 	List<T> findListByQueryDinamica(String query, int iniciaNoRegistro, int maximoResultado) throws Exception;
 }
