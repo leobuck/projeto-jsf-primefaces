@@ -1,4 +1,4 @@
-package br.com.framework.crud;
+package br.com.framework.implementacao.crud;
 
 public class VariavelConexaoUtil {
 

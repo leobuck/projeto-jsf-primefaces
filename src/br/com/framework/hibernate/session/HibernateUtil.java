@@ -14,7 +14,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.engine.SessionFactoryImplementor;
 
-import br.com.framework.crud.VariavelConexaoUtil;
+import br.com.framework.implementacao.crud.VariavelConexaoUtil;
 
 @ApplicationScoped
 public class HibernateUtil implements Serializable {
