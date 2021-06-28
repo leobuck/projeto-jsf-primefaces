@@ -17,6 +17,7 @@ public class Entidade implements Serializable {
 	private Long entCodigo;
 	private String entLogin;
 	private String entSenha;
+	private boolean entInativo;
 
 	public Long getEntCodigo() {
 		return entCodigo;
@@ -40,6 +41,14 @@ public class Entidade implements Serializable {
 
 	public void setEntSenha(String entSenha) {
 		this.entSenha = entSenha;
+	}
+
+	public boolean isEntInativo() {
+		return entInativo;
+	}
+
+	public void setEntInativo(boolean entInativo) {
+		this.entInativo = entInativo;
 	}
 
 }
