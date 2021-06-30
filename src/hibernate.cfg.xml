@@ -8,7 +8,7 @@
     	<property name="hibernate.connection.datasource">java:/comp/env/jdbc/datasource</property>
     	<property name="hibernate.default_schema">public</property>
     	<property name="hibernate.current_session_context_class">thread</property>
-    	<property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransaction</property>
+    	<property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
 		<property name="hibernate.jdbc.factory_class">org.hibernate.jdbc.NonBatchingBatcherFactory</property>
 		<property name="hibernate.jdbc.batch_size">100</property>
 		<property name="hibernate.cache.use_second_cache">true</property>
@@ -19,6 +19,7 @@
 		<property name="hibernate.generate_statistics">false</property>
 		<property name="hibernate.connection.autocommit">false</property>
 		<property name="hibernate.connection.pool_size">50</property>
+		<property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>
 		
 		<mapping class="br.com.project.model.classes.Entidade" />  
 		
@@ -35,10 +36,11 @@
 			type="post-collection-recreate" />
 		
 		<listener class="org.hibernate.envers.event.AuditEventListener"
-			type="post-collection-update" />
-			
+			type="pre-collection-update" />
+						
 		<listener class="org.hibernate.envers.event.AuditEventListener"
-			type="post-collection-remove" />
+			type="pre-collection-remove" />
+
 				  	
     </session-factory>
 </hibernate-configuration>

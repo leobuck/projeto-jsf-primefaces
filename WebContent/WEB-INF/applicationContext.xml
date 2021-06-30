@@ -48,6 +48,7 @@
 		<property name="sqlMigrationSeparator" value="_" />
 		<property name="encoding" value="ISO-8859-1" />
 		<property name="validateOnMigrate" value="true" />
+		<property name="locations" value="classpath:db/migration"/>
 	</bean>
 	
 	<bean id="transactionManager" name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
