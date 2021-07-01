@@ -48,7 +48,7 @@
 			<jdbc-user-service data-source-ref="springDataSource" 
 				users-by-username-query="SELECT ent_login AS username,
 				                                ent_senha AS password,
-				                                'true' AS enable,
+				                                'true' AS enable
 				                         FROM entidade
 				                         WHERE ent_inativo = false
 				                         AND upper(ent_login) = upper(?)"
@@ -56,7 +56,7 @@
 				authorities-by-username-query="SELECT u.ent_login AS username,
 				                                      p.esa_codigo AS authority
 				                               FROM entidade u
-				                               JOIN entidadeacesso p
+				                               JOIN entidade_acesso p
 				                               ON u.ent_codigo = p.ent_codigo
 				                               WHERE u.ent_inativo = false
 				                               AND upper(ent_login) = upper(?)" />
