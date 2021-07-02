@@ -109,4 +109,6 @@
 	
 	<bean id="loginRepository" class="br.com.dao.implementacao.LoginDao" />
 	
+	<bean id="loginService" class="br.com.srv.implementacao.LoginSrvImpl" />
+	
 </beans>
