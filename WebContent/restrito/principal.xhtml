@@ -7,13 +7,10 @@
 	xmlns:sec="http://www.springframework.org/security/facelets/tags"
 	xmlns:p="http://primefaces.org/ui">
 	
-<h:head>
-</h:head>
-
-<h:body>
-	<h1>Principal</h1>
-	<h:form>
-	</h:form>
-</h:body>
+<ui:composition template="/templates/templatePrincipal.xhtml">
+	<ui:define name="corpo">
+		<h1>Página Inicial</h1>
+	</ui:define>
+</ui:composition>
 
 </html>

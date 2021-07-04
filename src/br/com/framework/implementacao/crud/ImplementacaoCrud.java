@@ -277,5 +277,27 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T> {
 	private void executeFlushSession() {
 		sessionFactory.getCurrentSession().flush();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public T findUniqueByQueryDinamica(String query) throws Exception {
+		validaSessionFactory();
+		T obj = (T) sessionFactory.getCurrentSession().createQuery(query.toString()).uniqueResult();
+		return obj;
+	}
+
+	public T findUniqueByProperty(Class<T> entidade, Object valor, String atributo, String condicao) throws Exception {
+		validaSessionFactory();
+		StringBuilder query = new StringBuilder();
+		query.append("SELECT entity FROM ")
+			.append(entidade.getSimpleName())
+			.append(" entity WHERE entity.")
+			.append(atributo)
+			.append(" = '")
+			.append(valor)
+			.append("' ")
+			.append(condicao);
+		T obj = (T) this.findUniqueByQueryDinamica(query.toString());
+		return obj;
+	}
 
 }
