@@ -51,33 +51,13 @@
 			<div class="espacoBranco" />
 			
 			<p:dataTable id="tableResult" value="#{cidadeBeanView.list}" var="objeto" 
-				emptyMessage="Não existem registro para listagem">
-				<p:column style="text-align: center;">
-					<f:facet name="header">Código</f:facet>
-					<h:outputFormat value="#{objeto.cidCodigo}" />
-				</p:column>
-				<p:column style="text-align: center;">
-					<f:facet name="header">Nome</f:facet>
-					<h:outputFormat value="#{objeto.cidDescricao}" />
-				</p:column>
-				<p:column style="text-align: center;">
-					<f:facet name="header">Estado</f:facet>
-					<h:outputFormat value="#{objeto.estado.estNome}" />
-				</p:column>
-				<p:column style="text-align: center;">
-					<f:facet name="header">Editar</f:facet>
-					<p:commandLink action="#{cidadeBeanView.editar}" id="editarCidade" value="Editar" 
-						ajax="true" immediate="true" update="@form:formCadastro">
-						<f:setPropertyActionListener value="#{objeto}" target="#{cidadeBeanView.objetoSelecionado}" />
-					</p:commandLink>
-				</p:column>
-				<p:column style="text-align: center;">
-					<f:facet name="header">Excluir</f:facet>
-					<p:commandLink action="#{cidadeBeanView.excluir}" id="excluirCidade" value="Excluir" 
-						ajax="true" immediate="true" update="tableResult">
-						<f:setPropertyActionListener value="#{objeto}" target="#{cidadeBeanView.objetoSelecionado}" />
-					</p:commandLink>
-				</p:column>
+				emptyMessage="Não existem registro para listagem"
+				rendered="#{cidadeBeanView.list.size() > 0}"
+				rows="5" paginator="true" paginatorPosition="bottom"
+				paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
+				
+				<ui:include src="/resources/components/colunasDataTableCidade.xhtml" />
+				
 			</p:dataTable>
 		</ui:define>
 	</ui:composition>
