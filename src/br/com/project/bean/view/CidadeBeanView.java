@@ -34,6 +34,20 @@ public class CidadeBeanView extends BeanManagedViewAbstract {
 		objetoSelecionado = cidadeController.merge(objetoSelecionado);
 		return "";
 	}
+	
+	@Override
+	public void saveNotReturn() throws Exception {
+		list.clear();
+		cidadeController.merge(objetoSelecionado);
+		list.add(objetoSelecionado);
+		objetoSelecionado = new Cidade();
+		sucesso();
+	}
+	
+	@Override
+	public void saveEdit() throws Exception {
+		saveNotReturn();
+	}
 
 	@Override
 	public String novo() throws Exception {
@@ -43,14 +57,17 @@ public class CidadeBeanView extends BeanManagedViewAbstract {
 	
 	@Override
 	public String editar() throws Exception {
-		
+		list.clear();
 		return url;
 	}
 	
 	@Override
 	public void excluir() throws Exception {
+		objetoSelecionado = (Cidade) cidadeController.getSession().get(Cidade.class, objetoSelecionado.getCidCodigo());
 		cidadeController.delete(objetoSelecionado);
-		novo();
+		list.remove(objetoSelecionado);
+		objetoSelecionado = new Cidade();
+		sucesso();
 	}
 
 	public Cidade getObjetoSelecionado() {

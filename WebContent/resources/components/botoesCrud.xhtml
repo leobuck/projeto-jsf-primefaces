@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:util="http://java.sun.com/jsf/composite/components"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui">
+
+	<composite:interface name="botoesCrud">
+		<composite:attribute name="managedBeanView" required="true" />
+		<composite:attribute name="botaoNovo" required="false" default="true" />
+		<composite:attribute name="botaoSalvar" required="false" default="true" />
+		<composite:attribute name="botaoAtualizar" required="false" default="true" />
+		<composite:attribute name="botaoExcluir" required="false" default="true" />
+		<composite:attribute name="camposReload" required="false" />
+	</composite:interface>	
+	
+	<composite:implementation>
+		<p:commandButton value="Novo" action="#{cc.attrs.managedBeanView.novo}" 
+			id="buttonNovo" rendered="#{cc.attrs.botaoNovo}" ajax="false" 
+			immediate="true" update="#{cc.attrs.camposReload}"
+			style="height: 40px; width: 100px; background: #CDCDC1; border: 1px solid #FFF;" />
+			
+		<p:commandButton value="Salvar" actionListener="#{cc.attrs.managedBeanView.saveNotReturn}" 
+			id="buttonSalvar" rendered="#{cc.attrs.botaoSalvar}" ajax="false" 
+			immediate="false" update="#{cc.attrs.camposReload}" partialSubmit="true" process="@this, @form"
+			style="height: 40px; width: 100px; background: #CDCDC1; border: 1px solid #FFF;" />
+			
+		<p:commandButton value="Atualizar" actionListener="#{cc.attrs.managedBeanView.saveEdit}" 
+			id="buttonAtualizar" rendered="#{cc.attrs.botaoAtualizar}" ajax="false" 
+			immediate="false" update="#{cc.attrs.camposReload}" partialSubmit="true" process="@this, @form"
+			style="height: 40px; width: 100px; background: #CDCDC1; border: 1px solid #FFF;" />
+		
+		<p:commandButton value="Excluir" actionListener="#{cc.attrs.managedBeanView.excluir}" 
+			id="buttonExcluir" rendered="#{cc.attrs.botaoExcluir}" ajax="false" 
+			immediate="false" update="#{cc.attrs.camposReload}"
+			style="height: 40px; width: 100px; background: #CDCDC1; border: 1px solid #FFF;" />
+			
+	</composite:implementation>
+</html>
