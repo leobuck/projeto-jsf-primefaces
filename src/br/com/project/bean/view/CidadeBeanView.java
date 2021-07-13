@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import br.com.framework.interfac.crud.InterfaceCrud;
 import br.com.project.bean.geral.BeanManagedViewAbstract;
 import br.com.project.geral.controller.CidadeController;
 import br.com.project.model.classes.Cidade;
@@ -24,9 +25,10 @@ public class CidadeBeanView extends BeanManagedViewAbstract {
 	private CidadeController cidadeController;
 
 	private Cidade objetoSelecionado = new Cidade();
-	
+
 	private String url = "/cadastro/cad_cidade.jsf?faces-redirect=true";
-	
+	private String urlFind = "/cadastro/find_cidade.jsf?faces-redirect=true";
+
 	private List<Cidade> list = new ArrayList<>();
 
 	@Override
@@ -34,7 +36,7 @@ public class CidadeBeanView extends BeanManagedViewAbstract {
 		objetoSelecionado = cidadeController.merge(objetoSelecionado);
 		return "";
 	}
-	
+
 	@Override
 	public void saveNotReturn() throws Exception {
 		list.clear();
@@ -43,7 +45,7 @@ public class CidadeBeanView extends BeanManagedViewAbstract {
 		objetoSelecionado = new Cidade();
 		sucesso();
 	}
-	
+
 	@Override
 	public void saveEdit() throws Exception {
 		saveNotReturn();
@@ -51,19 +53,26 @@ public class CidadeBeanView extends BeanManagedViewAbstract {
 
 	@Override
 	public String novo() throws Exception {
-		objetoSelecionado = new Cidade();
+		setarVariaveisNulas();
 		return url;
 	}
-	
+
+	@Override
+	public void setarVariaveisNulas() throws Exception {
+		list.clear();
+		objetoSelecionado = new Cidade();
+	}
+
 	@Override
 	public String editar() throws Exception {
 		list.clear();
 		return url;
 	}
-	
+
 	@Override
 	public void excluir() throws Exception {
-		objetoSelecionado = (Cidade) cidadeController.getSession().get(Cidade.class, objetoSelecionado.getCidCodigo());
+		objetoSelecionado = (Cidade) cidadeController.getSession().get(getClassImplement(),
+				objetoSelecionado.getCidCodigo());
 		cidadeController.delete(objetoSelecionado);
 		list.remove(objetoSelecionado);
 		objetoSelecionado = new Cidade();
@@ -79,7 +88,24 @@ public class CidadeBeanView extends BeanManagedViewAbstract {
 	}
 
 	public List<Cidade> getList() throws Exception {
-		list = new CidadeController().findList(Cidade.class);
+		list = new CidadeController().findList(getClassImplement());
 		return list;
 	}
+
+	@Override
+	protected Class<Cidade> getClassImplement() {
+		return Cidade.class;
+	}
+
+	@Override
+	public String redirecionarBuscarEntidade() throws Exception {
+		setarVariaveisNulas();
+		return urlFind;
+	}
+
+	@Override
+	protected InterfaceCrud<Cidade> getController() {
+		return cidadeController;
+	}
+
 }

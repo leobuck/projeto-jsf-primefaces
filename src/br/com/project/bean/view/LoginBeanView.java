@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import br.com.framework.interfac.crud.InterfaceCrud;
 import br.com.project.bean.geral.BeanManagedViewAbstract;
 import br.com.project.geral.controller.SessionController;
 import br.com.srv.interfaces.LoginSrv;
@@ -23,21 +24,21 @@ import br.com.srv.interfaces.LoginSrv;
 public class LoginBeanView extends BeanManagedViewAbstract {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Resource
 	private SessionController sessionController;
-	
+
 	@Resource
-	private LoginSrv loginSrv; 
+	private LoginSrv loginSrv;
 
 	private String username;
 	private String password;
-	
+
 	public void invalidar(ActionEvent actionEvent) throws Exception {
 		RequestContext context = RequestContext.getCurrentInstance();
 		FacesMessage message = null;
 		boolean loggedIn = false;
-		
+
 		if (loginSrv.autentico(getUsername(), getPassword())) {
 			sessionController.invalidateSession(getUsername());
 			loggedIn = true;
@@ -45,26 +46,26 @@ public class LoginBeanView extends BeanManagedViewAbstract {
 			loggedIn = false;
 			message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Acesso negado", "Login ou senha incorretos");
 		}
-		
+
 		if (message != null) {
 			FacesContext.getCurrentInstance().addMessage("msg", message);
 		}
-		
+
 		context.addCallbackParam("loggedIn", loggedIn);
 	}
-	
-	@RequestMapping(value =  "**/invalidarSession", method = RequestMethod.POST)
+
+	@RequestMapping(value = "**/invalidarSession", method = RequestMethod.POST)
 	public void invalidarSession(HttpServletRequest httpServletRequest) throws Exception {
 		String userLogadoSessao = null;
-		
+
 		if (httpServletRequest.getUserPrincipal() != null) {
 			userLogadoSessao = httpServletRequest.getUserPrincipal().getName();
 		}
-		
+
 		if (userLogadoSessao == null || (userLogadoSessao != null && userLogadoSessao.trim().isEmpty())) {
 			userLogadoSessao = httpServletRequest.getRemoteUser();
 		}
-		
+
 		if (userLogadoSessao != null && !userLogadoSessao.isEmpty()) {
 			sessionController.invalidateSession(userLogadoSessao);
 		}
@@ -84,6 +85,16 @@ public class LoginBeanView extends BeanManagedViewAbstract {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Override
+	protected Class<?> getClassImplement() {
+		return null;
+	}
+
+	@Override
+	protected InterfaceCrud<?> getController() {
+		return null;
 	}
 
 }
