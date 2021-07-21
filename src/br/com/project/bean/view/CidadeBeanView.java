@@ -1,8 +1,5 @@
 package br.com.project.bean.view;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 
 import org.primefaces.model.StreamedContent;
@@ -12,6 +9,7 @@ import org.springframework.stereotype.Controller;
 
 import br.com.framework.interfac.crud.InterfaceCrud;
 import br.com.project.bean.geral.BeanManagedViewAbstract;
+import br.com.project.carregamento.lazy.CarregamentoLazyListForObject;
 import br.com.project.geral.controller.CidadeController;
 import br.com.project.model.classes.Cidade;
 
@@ -30,7 +28,7 @@ public class CidadeBeanView extends BeanManagedViewAbstract {
 	private String url = "/cadastro/cad_cidade.jsf?faces-redirect=true";
 	private String urlFind = "/cadastro/find_cidade.jsf?faces-redirect=true";
 
-	private List<Cidade> list = new ArrayList<>();
+	private CarregamentoLazyListForObject<Cidade> list = new CarregamentoLazyListForObject<>();
 
 	@Override
 	public String save() throws Exception {
@@ -40,7 +38,7 @@ public class CidadeBeanView extends BeanManagedViewAbstract {
 
 	@Override
 	public void saveNotReturn() throws Exception {
-		list.clear();
+		list.clean();
 		cidadeController.merge(objetoSelecionado);
 		list.add(objetoSelecionado);
 		objetoSelecionado = new Cidade();
@@ -60,13 +58,13 @@ public class CidadeBeanView extends BeanManagedViewAbstract {
 
 	@Override
 	public void setarVariaveisNulas() throws Exception {
-		list.clear();
+		list.clean();
 		objetoSelecionado = new Cidade();
 	}
 
 	@Override
 	public String editar() throws Exception {
-		list.clear();
+		list.clean();
 		return url;
 	}
 
@@ -79,7 +77,7 @@ public class CidadeBeanView extends BeanManagedViewAbstract {
 		objetoSelecionado = new Cidade();
 		sucesso();
 	}
-	
+
 	@Override
 	public StreamedContent getArquivoReport() throws Exception {
 		super.setNomeRelatorioJasper("report_cidade");
@@ -96,8 +94,7 @@ public class CidadeBeanView extends BeanManagedViewAbstract {
 		this.objetoSelecionado = objetoSelecionado;
 	}
 
-	public List<Cidade> getList() throws Exception {
-		list = new CidadeController().findList(getClassImplement());
+	public CarregamentoLazyListForObject<Cidade> getList() throws Exception {
 		return list;
 	}
 
@@ -119,6 +116,13 @@ public class CidadeBeanView extends BeanManagedViewAbstract {
 
 	@Override
 	public void consultarEntidade() throws Exception {
-		super.consultarEntidade();
+		objetoSelecionado = new Cidade();
+		list.clean();
+		list.setTotalRegistrosConsulta(super.totalRegistrosConsulta(), super.getSqlLazyQuery());
+	}
+
+	@Override
+	public String condicaoAndParaPesquisa() throws Exception {
+		return "";
 	}
 }

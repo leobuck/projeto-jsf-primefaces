@@ -27,17 +27,17 @@ public class Cidade implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@IdentificaCampoPesquisa(descricaoCampo = "Código", campoConsulta = "cid_codigo")
+	@IdentificaCampoPesquisa(descricaoCampo = "Código", campoConsulta = "cidCodigo")
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cidade_seq")
 	@Column(name = "cid_codigo")
 	private Long cidCodigo;
 
-	@IdentificaCampoPesquisa(descricaoCampo = "Descrição", campoConsulta = "cid_descricao", principal = 1)
+	@IdentificaCampoPesquisa(descricaoCampo = "Descrição", campoConsulta = "cidDescricao", principal = 1)
 	@Column(name = "cid_descricao", nullable = false, length = 100)
 	private String cidDescricao;
 
-	@IdentificaCampoPesquisa(descricaoCampo = "Estado", campoConsulta = "estado.est_nome")
+	@IdentificaCampoPesquisa(descricaoCampo = "Estado", campoConsulta = "Estado.estNome")
 	@Basic
 	@ManyToOne
 	@JoinColumn(name = "estado", nullable = false)

@@ -37,4 +37,9 @@ public class EstadoBeanView extends BeanManagedViewAbstract {
 	protected InterfaceCrud<Estado> getController() {
 		return estadoController;
 	}
+
+	@Override
+	public String condicaoAndParaPesquisa() throws Exception {
+		return "";
+	}
 }
