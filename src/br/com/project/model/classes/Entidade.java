@@ -2,6 +2,8 @@ package br.com.project.model.classes;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +13,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.envers.Audited;
+import org.primefaces.json.JSONObject;
+
+import br.com.project.annotation.IdentificaCampoPesquisa;
 
 @Audited
 @Entity
@@ -35,6 +40,10 @@ public class Entidade implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "ent_ultimoacesso")
 	private Date entUltimoAcesso;
+	
+	@IdentificaCampoPesquisa(campoConsulta = "entNomeFantasia", descricaoCampo = "Nome", principal = 1)
+	@Column(name = "ent_nomefantasia")
+	private String entNomeFantasia;
 
 	public Long getEntCodigo() {
 		return entCodigo;
@@ -75,5 +84,20 @@ public class Entidade implements Serializable {
 	public void setEntUltimoAcesso(Date entUltimoAcesso) {
 		this.entUltimoAcesso = entUltimoAcesso;
 	}
+
+	public String getEntNomeFantasia() {
+		return entNomeFantasia;
+	}
+
+	public void setEntNomeFantasia(String entNomeFantasia) {
+		this.entNomeFantasia = entNomeFantasia;
+	}
 	
+	public JSONObject getJson() {
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		map.put("ent_codigo", getEntCodigo());
+		map.put("ent_login", getEntLogin());
+		map.put("ent_nomefantasia", getEntNomeFantasia());
+		return new JSONObject(map);
+	}
 }

@@ -108,6 +108,7 @@
 	<bean id="controller" name="controller" class="br.com.framework.controller.crud.Controller" />
 	
 	<bean id="sessionController" class="br.com.project.geral.controller.SessionControllerImpl" scope="singleton" />
+	<bean id="mensagemController" name="mensagemController" class="br.com.project.geral.controller.MensagemController" />
 	
 	<bean id="loginRepository" class="br.com.dao.implementacao.LoginDao" />
 	

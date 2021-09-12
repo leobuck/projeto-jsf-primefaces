@@ -245,3 +245,17 @@ function addMascaraPesquisa(elemento) {
 		});
 	}
 }
+
+function pesquisaUsuarioDestinoPerderFocoDialog(codUsuario) {
+	if (codUsuario != '') {
+		$("#usuDestinoMsgDialog").val('');
+		$('#loginDestinoMsgDialog').val('');
+		$.get("buscarUsuarioDestinoMsg?codEntidade=" + codUsuario, function(resposta) {
+			if (resposta.trim() != '') {
+				var entidade = JSON.parse(resposta);
+				$("#usuDestinoMsgDialog").val(entidade.ent_codigo);
+				$('#loginDestinoMsgDialog').val(entidade.ent_login);
+			}
+		});
+	}
+}

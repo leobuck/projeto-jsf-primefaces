@@ -17,6 +17,7 @@
 			<composite:attribute name="menuImpressao" required="false" default="false" />
 			<composite:attribute name="nomePesquisa" required="true" />
 			<composite:attribute name="colunasGriDataTableList" required="true" />
+			<composite:attribute name="funcaoJavascript" required="false" />
 		</composite:interface>
 		
 		<composite:implementation>
@@ -68,12 +69,22 @@
 			
 			<p:spacer />
 			
-			<p:dataTable id="tableResult" rendered="true" value="#{cc.attrs.managedBeanView.list.list}"
+			<p:dataTable id="tableResult" rendered="true" value="#{cc.attrs.managedBeanView.list}"
 				var="objeto" rows="10" widgetVar="tableResult" paginatorPosition="bottom"
 				lazy="true" paginator="true" emptyMessage="Não existem valores para exibição."
 				paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
 					{LastPageLink} {RowsPerPageDropdown}">
 				<ui:include src="#{cc.attrs.colunasGriDataTableList}" />
+				<p:column id="colunaSelecionar">
+					<center>
+						<f:facet name="header">Selecionar</f:facet>
+						<p:commandLink id="addPesquisa" immediate="true"
+							ajax="true" process="@this, colunaSelecionar"
+							onclick="#{cc.attrs.funcaoJavascript}">
+							<h:graphicImage library="img" name="add_16.png" />
+						</p:commandLink>
+					</center>
+				</p:column>
 			</p:dataTable>
 			
 			<script type="text/javascript" charset="UTF-8">
