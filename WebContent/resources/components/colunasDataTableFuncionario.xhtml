@@ -18,4 +18,14 @@
 		<f:facet name="header">Nome Fantasia</f:facet>
 		<h:outputFormat value="#{objeto.entNomeFantasia}" />
 	</p:column>
+	
+	<p:column style="text-align: center; width: 50px;">
+		<f:facet name="header">Excluir</f:facet>
+		<p:commandLink action="#{funcionarioBeanView.excluir}" 
+			process="@this" ajax="true" immediate="true" update="tableResult">
+			<h:graphicImage library="img" name="excluir16.png" />
+			<f:setPropertyActionListener value="#{objeto}" target="#{funcionarioBeanView.objetoSelecionado}" />
+		</p:commandLink>
+	</p:column>
+	
 </html>

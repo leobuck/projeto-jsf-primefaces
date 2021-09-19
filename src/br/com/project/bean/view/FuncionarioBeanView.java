@@ -18,6 +18,8 @@ import br.com.project.model.classes.Entidade;
 public class FuncionarioBeanView extends BeanManagedViewAbstract {
 
 	private static final long serialVersionUID = 1L;
+	
+	private String urlFind = "/cadastro/find_funcionario.jsf?faces-redirect=true"; 
 
 	private Entidade objetoSelecionado = new Entidade();
 
@@ -65,5 +67,20 @@ public class FuncionarioBeanView extends BeanManagedViewAbstract {
 		objetoSelecionado = new Entidade();
 		list.clean();
 		list.setTotalRegistrosConsulta(super.totalRegistrosConsulta(), super.getSqlLazyQuery());
+	}
+	
+	@Override
+	public String redirecionarBuscarEntidade() throws Exception {
+		return urlFind;
+	}
+	
+	@Override
+	public void excluir() throws Exception {
+		if (objetoSelecionado.getEntCodigo() != null && objetoSelecionado.getEntCodigo() > 0) {
+			entidadeController.delete(objetoSelecionado);
+			list.remove(objetoSelecionado);
+			objetoSelecionado = new Entidade();
+			sucesso();
+		}
 	}
 }
