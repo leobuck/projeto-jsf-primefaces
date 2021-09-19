@@ -41,7 +41,7 @@ public class FuncionarioBeanView extends BeanManagedViewAbstract {
 
 	@Override
 	public String condicaoAndParaPesquisa() throws Exception {
-		return "";
+		return " AND entity.tipoEntidade = 'FUNCIONARIO' ";
 	}
 
 	public Entidade getObjetoSelecionado() {

@@ -27,23 +27,25 @@ public class Entidade implements Serializable {
 	@Id
 	@Column(name = "ent_codigo")
 	private Long entCodigo;
-	
+
 	@Column(name = "ent_login")
 	private String entLogin;
-	
+
 	@Column(name = "ent_senha")
 	private String entSenha;
-	
+
 	@Column(name = "ent_inativo")
 	private boolean entInativo;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "ent_ultimoacesso")
 	private Date entUltimoAcesso;
-	
+
 	@IdentificaCampoPesquisa(campoConsulta = "entNomeFantasia", descricaoCampo = "Nome", principal = 1)
 	@Column(name = "ent_nomefantasia")
 	private String entNomeFantasia;
+
+	private String tipoEntidade = "";
 
 	public Long getEntCodigo() {
 		return entCodigo;
@@ -92,7 +94,15 @@ public class Entidade implements Serializable {
 	public void setEntNomeFantasia(String entNomeFantasia) {
 		this.entNomeFantasia = entNomeFantasia;
 	}
-	
+
+	public String getTipoEntidade() {
+		return tipoEntidade;
+	}
+
+	public void setTipoEntidade(String tipoEntidade) {
+		this.tipoEntidade = tipoEntidade;
+	}
+
 	public JSONObject getJson() {
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		map.put("ent_codigo", getEntCodigo());
