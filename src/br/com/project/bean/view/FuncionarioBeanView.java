@@ -11,6 +11,7 @@ import br.com.project.bean.geral.BeanManagedViewAbstract;
 import br.com.project.carregamento.lazy.CarregamentoLazyListForObject;
 import br.com.project.geral.controller.EntidadeController;
 import br.com.project.model.classes.Entidade;
+import br.com.project.util.all.Mensagens;
 
 @Controller
 @Scope("session")
@@ -20,6 +21,8 @@ public class FuncionarioBeanView extends BeanManagedViewAbstract {
 	private static final long serialVersionUID = 1L;
 	
 	private String urlFind = "/cadastro/find_funcionario.jsf?faces-redirect=true"; 
+	
+	private String url = "/cadastro/cad_funcionario.jsf?faces-redirect=true";
 
 	private Entidade objetoSelecionado = new Entidade();
 
@@ -82,5 +85,37 @@ public class FuncionarioBeanView extends BeanManagedViewAbstract {
 			objetoSelecionado = new Entidade();
 			sucesso();
 		}
+	}
+	
+	@Override
+	public String novo() throws Exception {
+		objetoSelecionado = new Entidade();
+		list.clean();
+		return url;
+	}
+	
+	@Override
+	public void saveNotReturn() throws Exception {
+		if (!objetoSelecionado.getAcessos().contains("USER")) {
+			objetoSelecionado.getAcessos().add("USER");
+		}
+		objetoSelecionado = entidadeController.merge(objetoSelecionado);
+		list.add(objetoSelecionado);
+		objetoSelecionado = new Entidade();
+		sucesso();
+	}
+	
+	@Override
+	public void saveEdit() throws Exception {
+		objetoSelecionado = entidadeController.merge(objetoSelecionado);
+		list.add(objetoSelecionado);
+		objetoSelecionado = new Entidade();
+		Mensagens.msgSeverityInfo("Atualizado com sucesso!");
+	}
+	
+	@Override
+	public String editar() throws Exception {
+		list.clean();
+		return url;
 	}
 }
