@@ -2,6 +2,7 @@ package br.com.project.bean.view;
 
 import javax.faces.bean.ManagedBean;
 
+import org.primefaces.model.StreamedContent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -35,7 +36,7 @@ public class FuncionarioBeanView extends BeanManagedViewAbstract {
 	private CarregamentoLazyListForObject<Entidade> list = new CarregamentoLazyListForObject<>();
 
 	@Override
-	protected Class<?> getClassImplement() {
+	protected Class<Entidade> getClassImplement() {
 		return Entidade.class;
 	}
 
@@ -117,5 +118,13 @@ public class FuncionarioBeanView extends BeanManagedViewAbstract {
 	public String editar() throws Exception {
 		list.clean();
 		return url;
+	}
+	
+	@Override
+	public StreamedContent getArquivoReport() throws Exception {
+		super.setNomeRelatorioJasper("report_funcionario");
+		super.setNomeRelatorioSaida("report_funcionario");
+		super.setListDataBeanCollectionReport(entidadeController.findList(getClassImplement()));
+		return super.getArquivoReport();
 	}
 }

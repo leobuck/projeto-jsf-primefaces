@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_funcionario" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ed10ead2-3393-4af4-a0d9-8fc8ded78ed0">
+	<property name="ireport.zoom" value="0.9090909090909091"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="entCodigo" class="java.lang.Long">
+		<fieldDescription><![CDATA[entCodigo]]></fieldDescription>
+	</field>
+	<field name="entInativo" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[entInativo]]></fieldDescription>
+	</field>
+	<field name="entLogin" class="java.lang.String">
+		<fieldDescription><![CDATA[entLogin]]></fieldDescription>
+	</field>
+	<field name="entSenha" class="java.lang.String">
+		<fieldDescription><![CDATA[entSenha]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="802" height="79" uuid="83765447-2d8c-498d-886a-161c619b44ff"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="48" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Relatório de Funcionários]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="20">
+			<textField>
+				<reportElement x="0" y="0" width="200" height="20" uuid="32739391-edba-4899-8294-2d388ad050c7"/>
+				<textFieldExpression><![CDATA[$F{entCodigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="200" height="20" uuid="3e803fc7-97b5-4f14-a1df-c70553871030"/>
+				<textFieldExpression><![CDATA[$F{entInativo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="200" height="20" uuid="80d0adde-a4d3-4de6-b808-9b1907896e99"/>
+				<textFieldExpression><![CDATA[$F{entLogin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="600" y="0" width="200" height="20" uuid="95f47b95-8785-43ac-9bcc-ae772894ec60"/>
+				<textFieldExpression><![CDATA[$F{entSenha}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
