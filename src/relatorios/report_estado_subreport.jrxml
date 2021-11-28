@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_estado_subreport" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="50f9c3a8-6cb0-4de8-9a61-4c40f3478958">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="cidCodigo" class="java.lang.Long">
+		<fieldDescription><![CDATA[cidCodigo]]></fieldDescription>
+	</field>
+	<field name="cidDescricao" class="java.lang.String">
+		<fieldDescription><![CDATA[cidDescricao]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="91" height="20" uuid="599732dc-3219-4de3-abe6-dd1b0d54ad90"/>
+				<textFieldExpression><![CDATA[$F{cidCodigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="91" y="0" width="711" height="20" uuid="ee3a8343-8f82-495e-bcc6-8cae84a928bd"/>
+				<textFieldExpression><![CDATA[$F{cidDescricao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

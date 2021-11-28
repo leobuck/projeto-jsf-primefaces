@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_estado" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a5cead1b-e85e-4912-9628-13064a3e672a">
+	<property name="ireport.zoom" value="1.6105100000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="REPORT_PARAMETERS_IMG" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Leo\\eclipse-workspace\\projeto-jsf-primefaces\\src\\relatorios\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="estId" class="java.lang.Long">
+		<fieldDescription><![CDATA[estId]]></fieldDescription>
+	</field>
+	<field name="estNome" class="java.lang.String">
+		<fieldDescription><![CDATA[estNome]]></fieldDescription>
+	</field>
+	<field name="estUF" class="java.lang.String">
+		<fieldDescription><![CDATA[estUF]]></fieldDescription>
+	</field>
+	<field name="cidades" class="java.util.List">
+		<fieldDescription><![CDATA[cidades]]></fieldDescription>
+	</field>
+	<group name="Grupo Estados">
+		<groupExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{cidades})]]></groupExpression>
+		<groupHeader>
+			<band height="41">
+				<rectangle>
+					<reportElement x="0" y="1" width="555" height="40" backcolor="#CCCCCC" uuid="364759fd-e8e3-431f-8197-a081e47d4309"/>
+				</rectangle>
+				<textField>
+					<reportElement x="424" y="21" width="131" height="20" uuid="b591abd7-1ac0-48a9-b027-a5bc5a6a3eb7"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{estUF}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="21" width="100" height="20" uuid="cc31890d-cc99-4e87-9feb-c29fefd0bf0b"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{estId}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="100" y="0" width="324" height="20" uuid="3b2844da-a0bd-48cf-923e-9bcd0d6e966c"/>
+					<textElement textAlignment="Left">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Descrição]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="20" uuid="0c6e98d1-f1e3-42b4-8d4d-d0b1efdde9e9"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Código]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="100" y="21" width="324" height="20" uuid="8a660941-9765-494f-8cce-2385aed32bf1"/>
+					<textFieldExpression><![CDATA[$F{estNome}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="424" y="0" width="131" height="20" uuid="39ebb27f-c812-42c1-8c6a-d99afbd72270"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Sigla]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="63" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="290" height="63" uuid="859fa223-1225-4c32-8ad0-817159dcba65"/>
+				<textElement>
+					<font size="48"/>
+				</textElement>
+				<text><![CDATA[Estados]]></text>
+			</staticText>
+			<image>
+				<reportElement x="290" y="0" width="265" height="63" uuid="9115c672-e72c-41e2-bf4f-f43feff12145"/>
+				<imageExpression><![CDATA[$P{REPORT_PARAMETERS_IMG} + "leaf_banner_violet.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" uuid="363ec3a7-2fba-47ee-9796-86558f3c6cd4"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{cidades})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "report_estado_subreport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="424" y="0" width="131" height="20" uuid="bcd56e8a-2ce9-47df-931a-d2e540e96b89"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<noData>
+		<band height="14">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="14" uuid="650a5784-ad99-4610-bf90-dd96a74cb8ca"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Não há dados.]]></text>
+			</staticText>
+		</band>
+	</noData>
+</jasperReport>

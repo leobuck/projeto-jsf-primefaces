@@ -11,7 +11,9 @@ import br.com.framework.interfac.crud.InterfaceCrud;
 import br.com.project.bean.geral.BeanManagedViewAbstract;
 import br.com.project.carregamento.lazy.CarregamentoLazyListForObject;
 import br.com.project.geral.controller.CidadeController;
+import br.com.project.geral.controller.EstadoController;
 import br.com.project.model.classes.Cidade;
+import br.com.project.model.classes.Estado;
 
 @Controller
 @Scope(value = "session")
@@ -22,6 +24,9 @@ public class CidadeBeanView extends BeanManagedViewAbstract {
 
 	@Autowired
 	private CidadeController cidadeController;
+	
+	@Autowired
+	private EstadoController estadoController;
 
 	private Cidade objetoSelecionado = new Cidade();
 
@@ -80,9 +85,9 @@ public class CidadeBeanView extends BeanManagedViewAbstract {
 
 	@Override
 	public StreamedContent getArquivoReport() throws Exception {
-		super.setNomeRelatorioJasper("report_cidade");
-		super.setNomeRelatorioSaida("report_cidade");
-		super.setListDataBeanCollectionReport(cidadeController.findList(getClassImplement()));
+		super.setNomeRelatorioJasper("report_estado");
+		super.setNomeRelatorioSaida("report_estado");
+		super.setListDataBeanCollectionReport(estadoController.findList(Estado.class));
 		return super.getArquivoReport();
 	}
 
