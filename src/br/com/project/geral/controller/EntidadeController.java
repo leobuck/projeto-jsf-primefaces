@@ -30,4 +30,8 @@ public class EntidadeController extends ImplementacaoCrud<Entidade> implements I
 		return super.findUniqueByProperty(Entidade.class, userLogado, "entLogin", " AND entity.entInativo IS FALSE");
 	}
 
+	public boolean existeCpf(String cpf) throws Exception {
+		return super.findListByQueryDinamica("FROM Entidade WHERE cpf = '" + cpf + "'").size() > 0;
+	}
+
 }

@@ -71,6 +71,9 @@ public class Entidade implements Serializable {
 	private Set<String> acessos = new HashSet<String>();
 	
 	private String email;
+	
+	@Column(unique = true)
+	private String cpf;
 
 	public Long getEntCodigo() {
 		return entCodigo;
@@ -142,6 +145,14 @@ public class Entidade implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getCpf() {
+		return cpf;
+	}
+	
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public JSONObject getJson() {

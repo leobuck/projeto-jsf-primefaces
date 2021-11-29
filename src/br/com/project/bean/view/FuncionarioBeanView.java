@@ -100,10 +100,15 @@ public class FuncionarioBeanView extends BeanManagedViewAbstract {
 		if (!objetoSelecionado.getAcessos().contains("USER")) {
 			objetoSelecionado.getAcessos().add("USER");
 		}
-		objetoSelecionado = entidadeController.merge(objetoSelecionado);
-		list.add(objetoSelecionado);
-		objetoSelecionado = new Entidade();
-		sucesso();
+		
+		if (entidadeController.existeCpf(objetoSelecionado.getCpf())) {
+			Mensagens.msgSeverityWarn("CPF já cadastrado!");
+		} else {
+			objetoSelecionado = entidadeController.merge(objetoSelecionado);
+			list.add(objetoSelecionado);
+			objetoSelecionado = new Entidade();
+			sucesso();
+		}
 	}
 	
 	@Override

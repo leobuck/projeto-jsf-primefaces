@@ -47,6 +47,25 @@
 						
 						<p:column>
 							<p:row>
+								<h:outputLabel for="cpf" value="CPF:" id="labelCpf" />
+							</p:row>
+						</p:column>
+						<p:column>
+							<p:row>
+								<p:inputMask mask="999.999.999-99" 
+									id="cpf" value="#{funcionarioBeanView.objetoSelecionado.cpf}"
+									required="true" requiredMessage="Informe o CPF"
+									style="width: 350px;" />
+							</p:row>
+						</p:column>
+						<p:column>
+							<p:row>
+								<p:message for="cpf" />
+							</p:row>
+						</p:column>
+						
+						<p:column>
+							<p:row>
 								<h:outputLabel for="tipoEntidade" value="Tipo:" id="labelTipoEntidade" />
 							</p:row>
 						</p:column>
