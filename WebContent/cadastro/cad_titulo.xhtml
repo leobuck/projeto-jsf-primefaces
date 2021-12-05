@@ -147,6 +147,23 @@
 							</p:row>
 						</p:column>
 						
+						<p:column>
+							<p:row>
+								<h:outputLabel for="codigoAbertura" value="Responsável:" id="labelDataHora" />
+							</p:row>
+						</p:column>
+						<p:column>
+							<p:row>
+								<p:inputText id="codigoAbertura"
+									value="#{tituloBeanView.objetoSelecionado.entCodigoAbertura.entNomeFantasia}" />
+							</p:row>
+						</p:column>
+						<p:column>
+							<p:row>
+								<p:message for="codigoAbertura" />
+							</p:row>
+						</p:column>
+						
 					</p:panelGrid>
 				</p:panel>
 				

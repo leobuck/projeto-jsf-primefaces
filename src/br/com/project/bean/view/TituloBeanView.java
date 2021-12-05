@@ -1,5 +1,6 @@
 package br.com.project.bean.view;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
 import org.primefaces.model.StreamedContent;
@@ -15,7 +16,7 @@ import br.com.project.model.classes.Titulo;
 import br.com.project.util.all.Mensagens;
 
 @Controller
-@Scope("session")
+@Scope("view")
 @ManagedBean(name = "tituloBeanView")
 public class TituloBeanView extends BeanManagedViewAbstract {
 
@@ -34,6 +35,11 @@ public class TituloBeanView extends BeanManagedViewAbstract {
 	private TituloController tituloController;
 	
 	private CarregamentoLazyListForObject<Titulo> list = new CarregamentoLazyListForObject<>();
+	
+	@PostConstruct
+	public void init() throws Exception {
+		objetoSelecionado.setEntCodigoAbertura(contextoBean.getEntidadeLogada());
+	}
 
 	@Override
 	protected Class<Titulo> getClassImplement() {
