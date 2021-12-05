@@ -149,7 +149,7 @@
 						
 						<p:column>
 							<p:row>
-								<h:outputLabel for="codigoAbertura" value="Responsável:" id="labelDataHora" />
+								<h:outputLabel for="codigoAbertura" value="Responsável:" id="labelCodigoAbertura" />
 							</p:row>
 						</p:column>
 						<p:column>
@@ -161,6 +161,32 @@
 						<p:column>
 							<p:row>
 								<p:message for="codigoAbertura" />
+							</p:row>
+						</p:column>
+						
+						<p:column>
+							<p:row>
+								<h:outputLabel for="entCodigo" value="Pagador:" id="labelEntCodigo" />
+							</p:row>
+						</p:column>
+						<p:column>
+							<p:row>
+								<p:autoComplete id="entCodigo"
+									value="#{tituloBeanView.objetoSelecionado.entCodigo}"
+									minQueryLength="3"
+									queryDelay="1500"
+									placeholder="Digite o nome do pagador"
+									completeMethod="#{tituloBeanView.pesquisarPagador}"
+									var="ent"
+									itemValue="#{ent}"
+									itemLabel="#{ent.entNomeFantasia}"
+									converter="entidadeConverter">
+								</p:autoComplete>
+							</p:row>
+						</p:column>
+						<p:column>
+							<p:row>
+								<p:message for="entCodigo" />
 							</p:row>
 						</p:column>
 						
